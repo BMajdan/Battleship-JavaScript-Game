@@ -1,4 +1,4 @@
-# Battleship JavaScript Game
+# Battleship Game in JavaScript
 
 ## **JavaScript Battleship minigame.**
 
