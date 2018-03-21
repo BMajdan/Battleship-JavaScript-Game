@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+      <title>battleShipGame</title>
+  	  <meta charset="utf-8" />
+      <link href="style.css" rel="stylesheet" />
+      <script src="libs/three.js"></script>
+      <script src="libs/jquery.js"></script>
+      <script src="libs/colladaLoader.js"></script>
+      <script src="libs/orbitcontrols.js"></script>
+      <script src="libs/socket.js"></script>
+      <script src="js/Settings.js"></script>
+      <script src="js/Materials.js"></script>
+      <script src="js/Ship.js"></script>
+      <script src="js/Net.js"></script>
+      <script src="js/Main.js"></script>
+      <script src="js/Game.js"></script>
+      <script src="js/Models.js"></script>
+      <script src="js/WaterShader.js"></script>
+      <script src="js/Water.js"></script>
+      <script src="js/SkyBox.js"></script>
+      <script src="js/PlayArena.js"></script>
+      <script src="js/UserInterface.js"></script>
+      <script>
+        var main, game, net;
+        window.addEventListener("load",function () {
+            var client = io();
+
+            main = new Main(client);
+            game = new Game();
+            net = new Net(client);
+        })
+      </script>
+  </head>
+  <body>
+      <div id="shipPanel">
+        <h3 id="shipPanelText">Statki: </h3>
+        <button id="closePanel">></button>
+        <button id="showStats" class="button button-block">Statystyki</button>
+      </div>
+
+      <div id="playerInfo">
+        <h1 id="moveInfo">Rozstaw swoje statki</h1>
+      </div>
+
+      <div id="statisticPanel">
+        <div class="form">
+          <button id="closeStatistic">X</button>
+          <table id="statisctiTable">
+            <tr>
+              <th>Gracz: </th>
+              <th>Wynik: </th>
+              <th>Data: </th>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div id="loginPanel">
+        <div class="form">
+          <ul class="tab-group">
+            <li class="tab active"><a href="#signup">Zarejestruj</a></li>
+            <li class="tab"><a href="#login">Zaloguj</a></li>
+          </ul>
+        
+          <div class="tab-content">
+            <div id="signup">   
+              <h1>Zarejestruj swoje konto</h1>
+              
+              <div>
+                <div class="field-wrap">
+                  <label>Login<span class="req">*</span></label>
+                  <input type="text" required autocomplete="off" id="userNameRegister" />
+                </div>
+                
+                <div class="field-wrap">
+                  <label>Hasło<span class="req">*</span></label>
+                  <input type="password" required autocomplete="off" id="userPasswordRegister"/>
+                </div>
+                <button type="submit" id="registerButton" class="button button-block"/>Zarejestruj!</button>
+              </div>
+            </div>
+          
+            <div id="login">   
+              <h1>Witamy ponownie!</h1>
+              <div action="/" method="post">
+                <div class="field-wrap">
+                  <label>Login<span class="req">*</span></label>
+                  <input type="text" required autocomplete="off" id="userNameLogin"/>
+                </div>
+                <div class="field-wrap">
+                  <label>Hasło<span class="req">*</span></label>
+                  <input type="password" required autocomplete="off" id="userPasswordLogin"/>
+                </div>
+                <button id="loginButton" class="button button-block"/>Zaloguj</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="main"></div>
+  </body>
+</html>
